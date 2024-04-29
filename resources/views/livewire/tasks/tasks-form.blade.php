@@ -8,75 +8,75 @@
         <div class="mt-4">
             @if (session('success'))
                 <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
-                     role="alert">
+                    role="alert">
                     <span class="font-medium">Task Creatd!</span>
                 </div>
             @endif
             <form wire:submit="save">
                 <div class="mb-3">
                     <label for="title"
-                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
                     <input wire:model.live="form.title" type="text"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           id="title">
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        id="title">
                     <div>
                         @error('form.title')
-                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="slug"
-                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Slug</label>
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Slug</label>
                     <input wire:model="form.slug" type="text"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           id="slug">
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        id="slug">
                     <div>
                         @error('form.slug')
-                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="description"
-                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                     <textarea wire:model="form.description" type="text"
-                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                              id="description"></textarea>
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        id="description"></textarea>
                     <div>
                         @error('form.description')
-                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
                 <div class="flex justify-between">
                     <div class="mb-3">
                         <label for="status"
-                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
                         <select id="status" wire:model="form.status"
-                                class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             @foreach (\App\Enums\StatusType::cases() as $status)
                                 <option value="{{ $status->value }}">{{ $status->name }}</option>
                             @endforeach
                         </select>
                         <div>
                             @error('form.status')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="priority"
-                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Priority</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Priority</label>
                         <select id="priority" wire:model="form.priority"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             @foreach (\App\Enums\PriorityType::cases() as $priority)
                                 <option value="{{ $priority->value }}">{{ $priority->name }}</option>
                             @endforeach
                         </select>
                         <div>
                             @error('form.priority')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -84,22 +84,22 @@
 
                 <div class="mb-3">
                     <label for="slug"
-                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deadline</label>
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deadline</label>
                     <input wire:model="form.deadline" type="date"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <div>
                         @error('form.deadline')
-                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
                 <div class="mb-3">
                     <button type="submit"
-                            class="flex py-2 px-4 bg-indigo-500 hover:bg-indigo-600 text-white rounded-md">Submit
+                        class="flex py-2 px-4 bg-indigo-500 hover:bg-indigo-600 text-white rounded-md">Submit
                         <div wire:loading>
                             <svg aria-hidden="true"
-                                 class="w-5 h-5 mx-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
-                                 viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                class="w-5 h-5 mx-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                                viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
                                     fill="currentColor" />
