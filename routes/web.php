@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Tasks\TasksIndex;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +31,24 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/tasks', TasksIndex::class)->name('tasks.index');
 });
+
+Route::get('auth/telegram/redirect', function () {
+    return Socialite::driver('telegram')->redirect();
+});
+
+Route::get('auth/telegram/auth/telegram/callback', function () {
+    $telegramUser = Socialite::driver('telegram')->user();
+    $user = \App\Models\User::updateOrCreate(
+        ['telegram_id' => $telegramUser->getId()],
+        ['telegram_id' => $telegramUser->getName(),
+            'name' => $telegramUser->getNickname(),
+            'email' => $telegramUser->getEmail() ?? $telegramUser->getId() . '@telegram.com',
+        ]
+    );
+
+    auth()->login($user);
+
+    return redirect()->route('tasks.index');
+})->name('auth.telegram.callback');
 
 require __DIR__ . '/auth.php';
