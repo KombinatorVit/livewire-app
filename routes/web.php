@@ -36,11 +36,12 @@ Route::get('auth/telegram/redirect', function () {
     return Socialite::driver('telegram')->redirect();
 });
 
-Route::get('auth/telegram/auth/telegram/callback', function () {
+Route::get('auth/telegram/callback', function () {
     $telegramUser = Socialite::driver('telegram')->user();
+    dd( $telegramUser);
     $user = \App\Models\User::updateOrCreate(
         ['telegram_id' => $telegramUser->getId()],
-        ['telegram_id' => $telegramUser->getName(),
+        ['telegram_id' => $telegramUser->getId(),
             'name' => $telegramUser->getNickname(),
             'email' => $telegramUser->getEmail() ?? $telegramUser->getId() . '@telegram.com',
         ]

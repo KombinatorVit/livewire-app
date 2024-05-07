@@ -47,9 +47,12 @@
             </x-primary-button>
 
 
-            <x-primary-link class="ml-3" href="/auth/telegram/redirect">
-                {{ __('with Telegram') }}
-            </x-primary-link>
+
+        </div>
+
+        <div class="flex items-center justify-start mt-4">
+            <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="AdSssellbot" data-size="large" data-auth-url="{{ route('auth.telegram.callback') }}" data-request-access="write"></script>
+
         </div>
     </form>
 </x-guest-layout>
